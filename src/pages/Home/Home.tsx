@@ -1,4 +1,4 @@
-import { Grid } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import { userList } from "../../MocData/userList";
 import { UserCard } from "./components";
 
@@ -12,10 +12,10 @@ export const Home = () => {
     return 0;
   });
   return (
-    <Grid gap={"3"} columns={"4"}>
+    <Flex wrap={"wrap"} gap={"2"} style={{ justifyContent: "space-evenly" }}>
       {orderedUserList.map((currentUser) => (
         <UserCard user={currentUser} key={currentUser.id + currentUser.name} />
       ))}
-    </Grid>
+    </Flex>
   );
 };

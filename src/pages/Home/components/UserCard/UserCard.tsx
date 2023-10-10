@@ -1,6 +1,6 @@
 import { Card, Avatar, Heading, Flex } from "@radix-ui/themes";
-import { IUser } from "../../../interfaces/IUser";
-import { UseData, useModals } from "../../../../hooks";
+import { IUser } from "../../../../interfaces/IUser";
+import { useModals } from "../../../../hooks";
 
 interface UserCardProps {
   user: IUser;

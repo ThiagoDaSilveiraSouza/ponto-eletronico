@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { MocDataContext } from "../contexts";
 import { UseDataPayload } from "../interfaces";
 import * as mocData from "../MocData";
+import { generateRandomId } from "../utils/generateRandomId";
 
 type MocDataPropsKeys = keyof typeof mocData;
 
@@ -23,7 +24,7 @@ export const UseMocData = (mocDataName: MocDataPropsKeys) => {
     addDataToList: async (newData: itemType) => {
       await timer();
       setDataList((prevState) => {
-        return { ...prevState, newData };
+        return [...prevState, { id: generateRandomId(), ...newData }];
       });
     },
     deleteDataFromList: async (dataId) => {
@@ -42,11 +43,15 @@ export const UseMocData = (mocDataName: MocDataPropsKeys) => {
       );
     },
     getDataById: async (dataId) => {
-      await timer();
-      const targeData = dataList.find(
-        (currentData) => currentData.id === dataId
-      );
-      return targeData;
+      if (!!dataId) {
+        await timer();
+        const targeData = dataList.find(
+          (currentData) => currentData.id === dataId
+        );
+        return targeData;
+      } else {
+        return undefined;
+      }
     },
   } as UseDataPayload<itemType>;
 };
